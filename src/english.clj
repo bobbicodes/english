@@ -26,3 +26,28 @@
 (def opposites
   (clojure.string/split
     "awake bad bent bitter blue certain cold complete cruel dark dead dear delicate different dirty dry false feeble female foolish future green ill last late left loose loud low male mixed narrow old opposite public rough sad safe secret short shut simple slow small soft solid special strange thin white wrong" #"\s+"))
+
+(defn rand-operation []
+  (nth operations (rand-int (count operations))))
+
+(defn rand-general []
+  (nth general (rand-int (count general))))
+
+(defn rand-thing []
+  (nth things (rand-int (count things))))
+
+(defn rand-quality []
+  (nth qualities (rand-int (count qualities))))
+
+(defn rand-opposite []
+  (nth opposites (rand-int (count opposites))))
+
+(defn sentence []
+  (let [verb (rand-operation)
+        adjective (rand-quality)
+        noun (rand-thing)]
+    (str verb
+         (case (first adjective)
+               (\a \e \i \o \u) " an "
+               " a ")
+         adjective " " noun)))
